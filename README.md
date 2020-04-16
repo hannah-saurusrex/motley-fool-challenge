@@ -22,7 +22,7 @@ Just keep us in the loop as to how things are going. Feel free to spend more tim
 One of our stakeholders would like to create a new webpage on our site. The business goal is to have keyword hub pages on our website that are associated with commonly searched keywords from organic traffic.
 The stakeholder would like to create these pages so that users can easily find our great articles via organic search and once on the hub page, convert into our email marketing campaigns to receive more Foolish articles.
 
-The first keyword they want to try creating a page for is "Sock Market News".
+The first keyword they want to try creating a page for is "Stock Market News".
 They have provided a basic HTML page with the copy they would like displayed (/templates/news_hub.html) along with the business requirements below.
 
 Your technical team lead has provided the technical requirements below.

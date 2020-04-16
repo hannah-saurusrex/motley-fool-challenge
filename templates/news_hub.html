@@ -2,13 +2,32 @@
 
 <html>
 	<head>
-		<title>Hello</title>
+		<title>Motley Fool Coding Challenge - Hannah McMahons</title>
 		<link rel="stylesheet" href="/static/styles.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+		/>
+		<link
+			href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+			rel="stylesheet"
+		/>
 	</head>
-
+	<!-- .container {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		max-width: 1200px;
+		margin: auto;
+		padding: 30px;
+		position: relative;
+	}  -->
 	<body>
 		<header>
-			<div>
+			<div
+				class="flex flex-wrap align-center justify-center m-auto p-6 max-w-5xl"
+			>
 				<a
 					href="http://www.fool.com"
 					class="link-white no-hover"
@@ -24,25 +43,54 @@
 
 		<!--Page Content -->
 		<section>
-			<div>
-				<!-- Logo -->
-				<h1>Stock Market News</h1>
-				<p>
+			<div class="text-center my-10">
+				<h1 class="font-bold text-5xl m-0">Stock Market News</h1>
+				<p class="text-2xl">
 					A Foolish take on stocks and the market. Get stock ideas, investing
 					tips, and perspective.
 				</p>
-				<section>
-					<h2>Latest Headlines</h2>
-					<div>
-						<p>
-							Pull in latest articles here
-						</p>
-					</div>
-
-					<!-- Join SA CTA -->
-					{% include "partials/join_sa.html" %}
-				</section>
 			</div>
+			<div
+				class="flex flex-wrap item-center justify-between m-auto p-6 relative"
+			>
+				<input
+					type="text"
+					class="p-2 rounded border-none text-sm shadow"
+					id="search"
+					placeholder="search for an article..."
+				/>
+
+				<div
+					class="rounded cursor-pointer shadow text-sm p-4 relative bg-gray-100"
+					id="filter"
+				>
+					Filter by X THING here
+					<i class="fas fa-chevron-down mx-1"></i>
+					<ul
+						class="w-full rounded shadow p-1 absolute bg-gray-100 left-0 my-1 hidden"
+					>
+						<li class="my-2">All</li>
+						<li class="my-2">Fin Tech</li>
+						<li class="my-2">Stocks</li>
+						<li class="my-2">Investments</li>
+						<li class="my-2">Sock 🧦 Options</li>
+						<li class="my-2">Financials</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div
+				class="flex flex-wrap align-center justify-center m-auto p-6 max-w-5xl articles"
+				id="articles"
+			>
+				<h2>Latest Headlines</h2>
+				<p>Articles loading...</p>
+			</div>
+
+			<!-- Join SA CTA -->
+			{% include "partials/join_sa.html" %}
 		</section>
 
 		<!--JS -->
