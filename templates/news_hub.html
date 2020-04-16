@@ -1,0 +1,53 @@
+{% load static %}
+
+<html>
+	<head>
+		<title>Hello</title>
+		<link rel="stylesheet" href="/static/styles.css" />
+	</head>
+
+	<body>
+		<header>
+			<div>
+				<a
+					href="http://www.fool.com"
+					class="link-white no-hover"
+					aria-label="home page"
+				>
+					<img
+						alt="Motley Fool Logo"
+						src="https://g.foolcdn.com/art/fool15/bg/fool-logo.png"
+					/>
+				</a>
+			</div>
+		</header>
+
+		<!--Page Content -->
+		<section>
+			<div>
+				<!-- Logo -->
+				<h1>Stock Market News</h1>
+				<p>
+					A Foolish take on stocks and the market. Get stock ideas, investing
+					tips, and perspective.
+				</p>
+				<section>
+					<h2>Latest Headlines</h2>
+					<div>
+						<p>
+							Pull in latest articles here
+						</p>
+					</div>
+
+					<!-- Join SA CTA -->
+					{% include "partials/join_sa.html" %}
+				</section>
+			</div>
+		</section>
+
+		<!--JS -->
+		<section>
+			<script type="text/javascript" src="/static/script.js"></script>
+		</section>
+	</body>
+</html>

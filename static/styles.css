@@ -1,0 +1,12 @@
+html, body {
+  background-color: #efefef;
+  padding: 0;
+  margin: 0;
+}
+header {
+  width: 100%;
+  padding: 2rem 0rem;
+  background-color: #07a;
+  border-color: #07a;
+  box-shadow: 0 0 2px -1px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
+}
