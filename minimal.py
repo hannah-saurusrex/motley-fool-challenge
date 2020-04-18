@@ -22,8 +22,8 @@ settings.configure(
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
             'DIRS': [
-                    PROJECT_PATH + '/templates/',
-                ],
+                PROJECT_PATH + '/templates/',
+            ],
         }
     ],
     MEDIA_URL='/media/',
@@ -38,7 +38,8 @@ def stock_market_news(request):
 
 
 def get_articles(request):
-    articles_api_file = os.path.join(PROJECT_PATH + '/api_data/', 'articles.json')
+    articles_api_file = os.path.join(
+        PROJECT_PATH + '/api_data/', 'articles.json')
     with open(articles_api_file, "r") as f:
         articles = json.load(f)
     sleep(1.75)
@@ -46,7 +47,8 @@ def get_articles(request):
 
 
 def get_instruments(request):
-    instruments_api_file = os.path.join(PROJECT_PATH + '/api_data/', 'instruments.json')
+    instruments_api_file = os.path.join(
+        PROJECT_PATH + '/api_data/', 'instruments.json')
     with open(instruments_api_file, "r") as f:
         instruments = json.load(f)
     sleep(1.75)
@@ -58,8 +60,9 @@ urlpatterns = [
     url(r'api/articles', get_articles),
     url(r'api/instruments', get_instruments),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
-              + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 if __name__ == '__main__':
     execute_from_command_line(sys.argv)
+

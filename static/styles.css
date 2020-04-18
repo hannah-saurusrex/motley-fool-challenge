@@ -2,6 +2,7 @@
 
 :root {
 	--fool-blue: #07a;
+	--fool-green: #5fa85d;
 	--fool-white: #efefef;
 	--fool-black: hsl(200, 15%, 8%);
 }
@@ -22,15 +23,140 @@ img {
 	max-width: 100%;
 }
 
-/* motley fool header */
 header {
-	width: 100%;
-	padding: 2rem 0rem;
 	background-color: var(--fool-blue);
-	border-color: var(--fool-blue);
-	box-shadow: 0 0 2px -1px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
-h1 {
-	margin: 0;
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 1440px;
+	padding: 30px;
+}
+
+.content-center {
+	text-align: center;
+}
+
+.content-center__headline {
+	font-size: 4rem;
+	margin: 20px;
+}
+
+.content-center__text {
+	font-size: 18px;
+}
+
+/* input styling */
+.search {
+	padding: 25px;
+	border-radius: 4px;
+	border: none;
+	font-family: "Nunito Sans", sans-serif;
+	font-size: 14px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+	min-width: 300px;
+}
+
+/* dropdown styling */
+.dropdown {
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+	padding: 20px;
+	font-size: 14px;
+	border-radius: 4px;
+	position: relative;
+	cursor: pointer;
+}
+
+.dropdown .fa-chevron-down {
+	margin-left: 10px;
+}
+
+.dropdown ul {
+	padding: 20px;
+	position: absolute;
+	top: 100%;
+	list-style-type: none;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+	display: none;
+	cursor: pointer;
+}
+
+.dropdown.open ul {
+	display: block;
+	z-index: 3;
+}
+
+.dropdown ul li {
+	margin: 5px 0;
+}
+
+/* article card styling */
+.article {
+	max-width: 500px;
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
+	overflow: hidden;
+	cursor: pointer;
+	margin: 40px;
+}
+
+.article-body {
+	padding: 30px;
+}
+
+.article-body h2 {
+	margin-top: 0;
+}
+
+.container.articles {
+	justify-content: center;
+}
+
+/* stock advisor panel */
+.stock-advisor__headline {
+	color: var(--fool-green);
+	text-transform: uppercase;
+	font-size: 12px;
+	position: relative;
+}
+
+.stock-advisor__headline:after {
+	content: "";
+	border-bottom: 1px solid grey;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.btn {
+	margin: 2rem;
+	padding: 20px;
+	background-color: var(--fool-green);
+	outline: none;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.btn a {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+	letter-spacing: 1px;
+}
+
+.btn:hover {
+	transform: scale(1.02);
+	opacity: 0.8;
 }

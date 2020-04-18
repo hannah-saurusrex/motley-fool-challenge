@@ -8,26 +8,10 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
 		/>
-		<link
-			href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
-			rel="stylesheet"
-		/>
 	</head>
-	<!-- .container {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
-		max-width: 1200px;
-		margin: auto;
-		padding: 30px;
-		position: relative;
-	}  -->
 	<body>
 		<header>
-			<div
-				class="flex flex-wrap align-center justify-center m-auto p-6 max-w-5xl"
-			>
+			<div class="container">
 				<a
 					href="http://www.fool.com"
 					class="link-white no-hover"
@@ -43,32 +27,28 @@
 
 		<!--Page Content -->
 		<section>
-			<div class="text-center my-10">
-				<h1 class="font-bold text-5xl m-0">Stock Market News</h1>
-				<p class="text-2xl">
+			<div class="content-center">
+				<h1 class="content-center__headline">Stock Market News</h1>
+				<p class="content-center__text">
 					A Foolish take on stocks and the market. Get stock ideas, investing
 					tips, and perspective.
 				</p>
 			</div>
-			<div
-				class="flex flex-wrap item-center justify-between m-auto p-6 relative"
-			>
+		</section>
+
+		<section>
+			<div class="container">
 				<input
 					type="text"
-					class="p-2 rounded border-none text-sm shadow"
+					class="search"
 					id="search"
-					placeholder="search for an article..."
+					placeholder="search for an topic..."
 				/>
 
-				<div
-					class="rounded cursor-pointer shadow text-sm p-4 relative bg-gray-100"
-					id="filter"
-				>
-					Filter by X THING here
+				<div class="dropdown" id="filter">
+					Filter by topic
 					<i class="fas fa-chevron-down mx-1"></i>
-					<ul
-						class="w-full rounded shadow p-1 absolute bg-gray-100 left-0 my-1 hidden"
-					>
+					<ul class="">
 						<li class="my-2">All</li>
 						<li class="my-2">Fin Tech</li>
 						<li class="my-2">Stocks</li>
@@ -81,21 +61,17 @@
 		</section>
 
 		<section>
-			<div
-				class="flex flex-wrap align-center justify-center m-auto p-6 max-w-5xl articles"
-				id="articles"
-			>
-				<h2>Latest Headlines</h2>
-				<p>Articles loading...</p>
+			<div class="container articles" id="articles">
+				<h2>articles loading</h2>
 			</div>
+		</section>
 
+		<section class="content-center">
 			<!-- Join SA CTA -->
 			{% include "partials/join_sa.html" %}
 		</section>
 
 		<!--JS -->
-		<section>
-			<script type="text/javascript" src="/static/script.js"></script>
-		</section>
+		<script type="text/javascript" src="/static/script.js"></script>
 	</body>
 </html>
