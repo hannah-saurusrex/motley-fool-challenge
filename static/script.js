@@ -42,7 +42,6 @@ async function getArticles() {
     const res = await fetch('http://127.0.0.1:8000/api/articles');
     const articles = await res.json();
     displayArticles(articles.results);
-    console.log(articles.results);
 }
 
 getArticles();

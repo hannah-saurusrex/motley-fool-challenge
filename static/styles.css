@@ -33,7 +33,6 @@ header {
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
-	max-width: 1440px;
 	padding: 30px;
 }
 
@@ -205,4 +204,41 @@ header {
 .btn:hover {
 	transform: scale(1.02);
 	opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+	header {
+		padding: 30px 15px;
+	}
+
+	.content-center__headline {
+		font-size: 2.5rem;
+	}
+
+	.content-center__text {
+		font-size: 16px;
+		padding: 0 10px;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+	}
+
+	.search,
+	.dropdown {
+		margin: 10px 0;
+	}
+
+	.dropdown {
+		min-width: 300px;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.article-headline,
+	.article-promo {
+		margin-bottom: 5px;
+	}
 }
