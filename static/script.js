@@ -1,11 +1,12 @@
 // ToDos: 
-// API call
-// search
+// API call ✅
+// search 
 // filter
 // modal??
 const articlesEl = document.getElementById('articles');
-const filterBtn = document.getElementById('filter');
 const searchEl = document.getElementById('search');
+const filterBtn = document.getElementById('filter');
+const topicFilter = filterBtn.querySelectorAll('li');
 
 
     
@@ -17,34 +18,39 @@ function displayArticles(articles) {
         articleEl.classList.add('article');
     
         articleEl.innerHTML = `
-            <div>
+            <div class="article-image">
                 <img
                     src="${article.images[0].image}"
                     alt="${article.images[0].name}"
                 />
+                <h4 class="article-byline">${article.byline} | ${article.publish_at}</h4>
             </div>
             <div class="article-body">
                 <h2 class="article-headline">${article.headline}</h2>
-                <h4>${article.byline} | ${article.publish_at}</h4>
-                <p>${article.promo}</p>
+                <p class="article-promo">${article.promo}</p>
+            </div>
+            <div class="tags article-bureau">
+                <span>${article.bureau.name}</span>
             </div>
         `; // google timestame formatter
         articlesEl.appendChild(articleEl);
     });
 }
 
-// show & hide the filter dropdown options list
-filterBtn.addEventListener('click', () => {
-    filterBtn.classList.toggle('open');
-});
-
+// pull in the article data
 async function getArticles() {
     const res = await fetch('http://127.0.0.1:8000/api/articles');
     const articles = await res.json();
     displayArticles(articles.results);
+    console.log(articles.results);
 }
 
 getArticles();
+
+// show & hide the filter dropdown options list
+filterBtn.addEventListener('click', () => {
+    filterBtn.classList.toggle('open');
+});
 
 // search input function
 searchEl.addEventListener('input', e => {
@@ -59,3 +65,21 @@ searchEl.addEventListener('input', e => {
         }
     });
 });
+
+
+// filter articles by selected topic
+topicFilter.forEach(filter => {
+    filter.addEventListener('click', () => {
+        const value = filter.innerText;
+        const articleBureau = document.querySelectorAll('.article-bureau'); 
+        
+        articleBureau.forEach(bureau => {
+            if (bureau.innerText.includes(value) || value === 'All') {
+                bureau.parentElement.style.display = 'block';
+            } else {
+                bureau.parentElement.style.display = 'none';
+            }
+        });
+    });
+});
+
