@@ -4,14 +4,13 @@
 // filter via topic dropdown ✅
 // filter via topic tags
 // .slice(0,5) results to bring in top 5
-// format published_at timestamp
-// modal??
+
 const articlesEl = document.getElementById('articles');
-// const searchEl = document.getElementById('search');
 const filterBtn = document.getElementById('filter');
 const topicFilter = filterBtn.querySelectorAll('li');
+const tagsBtn = document.getElementById('tags');
 
-    
+
 function displayArticles(articles) {
     articlesEl.innerHTML = '';
     
@@ -24,17 +23,17 @@ function displayArticles(articles) {
                 <img
                     src="${article.images[0].image}"
                     alt="${article.images[0].name}"
-                    />
-                <h4 class="article-byline">${article.byline} | ${article.publish_at}</h4>
+                />
             </div>
             <div class="article-body">
                 <h2 class="article-headline">${article.headline}</h2>
+                <h4 class="article-byline">By ${article.byline}</h4>
                 <p class="article-promo">${article.promo}</p>
             </div>
-            <div class="tags article-bureau">
+            <div class="tags article-bureau" id="tags">
                 <span>${article.bureau.name}</span>
             </div>
-        `; // google timestame formatter
+        `;
         articlesEl.appendChild(articleEl);
     });
 }
@@ -52,20 +51,6 @@ getArticles();
 filterBtn.addEventListener('click', () => {
     filterBtn.classList.toggle('open');
 });
-
-// search input function
-// searchEl.addEventListener('input', e => {
-//     const { value } = e.target;
-//     const articleHeadline = document.querySelectorAll('.article-headline');
-
-//     articleHeadline.forEach(headline => {
-//         if (headline.innerText.toLowerCase().includes(value.toLowerCase())) {
-//             headline.parentElement.parentElement.style.display = 'block';
-//         } else {
-//             headline.parentElement.parentElement.style.display = 'none';
-//         }
-//     });
-// });
 
 
 // filter articles via topic dropdown
@@ -85,4 +70,7 @@ topicFilter.forEach(filter => {
 });
 
 // filter articles via topic tag
+
+
+
 
