@@ -5,6 +5,7 @@
 	--fool-green: #5fa85d;
 	--fool-white: #efefef;
 	--fool-black: hsl(200, 15%, 8%);
+	--grey: grey;
 }
 
 * {
@@ -34,6 +35,7 @@ header {
 	align-items: center;
 	justify-content: space-between;
 	padding: 30px;
+	margin: 0 20px 20px 20px;
 }
 
 .content-center {
@@ -69,6 +71,9 @@ header {
 	border-radius: 4px;
 	position: relative;
 	cursor: pointer;
+	width: 300px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .dropdown .fa-chevron-down {
@@ -168,23 +173,42 @@ header {
 }
 
 /* stock advisor panel */
-.stock-advisor__headline {
+.market-table__headline {
+	text-align: center;
+	font-size: 16px;
 	color: var(--fool-green);
 	text-transform: uppercase;
-	font-size: 12px;
-	position: relative;
+	font-weight: 600;
 }
 
-.stock-advisor__headline:after {
-	content: "";
-	border-bottom: 1px solid grey;
-	position: absolute;
-	top: 0;
-	left: 0;
+.market-table {
+	margin: auto;
+	max-width: 400px;
+	text-align: center;
+	border-top: 1px solid var(--grey);
+	padding-top: 3px;
+}
+
+.table-flex {
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 0;
+}
+
+.market-table__category {
+	text-transform: uppercase;
+	color: var(--grey);
+}
+
+.market-table__disclaimer {
+	font-size: 12px;
+	color: var(--grey);
+	padding-top: 10px;
+	margin-bottom: 0;
 }
 
 .btn {
-	margin: 2rem;
+	margin: 1rem 2rem 2rem 2rem;
 	padding: 20px;
 	background-color: var(--fool-green);
 	outline: none;
@@ -204,6 +228,7 @@ header {
 .btn:hover {
 	transform: scale(1.02);
 	opacity: 0.8;
+	transition: all 0.2s;
 }
 
 @media screen and (max-width: 768px) {
@@ -226,13 +251,8 @@ header {
 		padding: 0;
 	}
 
-	.search,
 	.dropdown {
-		margin: 10px 0;
-	}
-
-	.dropdown {
-		min-width: 300px;
+		width: 275px;
 		display: flex;
 		justify-content: space-between;
 	}
