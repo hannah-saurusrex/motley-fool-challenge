@@ -2,13 +2,11 @@
 // API call ✅
 // search ✅
 // filter via topic dropdown ✅
-// filter via topic tags
 // .slice(0,5) results to bring in top 5
 
 const articlesEl = document.getElementById('articles');
 const filterBtn = document.getElementById('filter');
 const topicFilter = filterBtn.querySelectorAll('li');
-const tagsBtn = document.getElementById('tags');
 
 
 function displayArticles(articles) {
@@ -20,17 +18,21 @@ function displayArticles(articles) {
     
         articleEl.innerHTML = `
             <div class="article-image">
-                <img
-                    src="${article.images[0].image}"
-                    alt="${article.images[0].name}"
-                />
+                <a href="${article.links.presentation}">
+                    <img
+                        src="${article.images[0].image}"
+                        alt="${article.images[0].name}"
+                    />
+                </a>
             </div>
             <div class="article-body">
-                <h2 class="article-headline">${article.headline}</h2>
-                <h4 class="article-byline">By ${article.byline}</h4>
-                <p class="article-promo">${article.promo}</p>
+                <a class="article-link" href="${article.links.presentation}">
+                    <h2 class="article-headline">${article.headline}</h2>
+                    <h4 class="article-byline">By ${article.byline}</h4>
+                    <p class="article-promo">${article.promo}</p>
+                </a>
             </div>
-            <div class="tags article-bureau" id="tags">
+            <div class="tags article-bureau">
                 <span>${article.bureau.name}</span>
             </div>
         `;
@@ -68,9 +70,3 @@ topicFilter.forEach(filter => {
         });
     });
 });
-
-// filter articles via topic tag
-
-
-
-
