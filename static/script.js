@@ -44,7 +44,6 @@ function displayArticles(articles) {
     });
 }
 
-
 // show & hide the filter dropdown options list
 filterBtn.addEventListener('click', () => {
     filterBtn.classList.toggle('open');
@@ -69,7 +68,8 @@ topicFilter.forEach(filter => {
 });
 
 // filter with topic tag
-// with more time, would refactor so that click event is on tags.
+// with more time, would refactor so that click event is on tags. 
+// But would need to make tags stateful, and reassign every time to update the dom, but figured this would do the trick for now :)
 document.addEventListener('click', e => {
     if(e.target.className === 'tags') {
         const filteredTags = allArticles.filter(article => {
@@ -81,4 +81,3 @@ document.addEventListener('click', e => {
     };
 });
 
-// would need to make tags stateful, and reassign every time to update the dom

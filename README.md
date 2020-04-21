@@ -3,8 +3,12 @@
 Hi! Here are some thoughts on my submission:
 Tech Stack: I used vanilla JS & CSS on this project. I have used React & Tailwind CSS on similar projects, but didn't feel they were necessary here. (You can view that project here, if you're curious: https://hungry-morse-69d490.netlify.app/).
 
-originally manipulated filters w/ css, refactored to manipulate show/hide w/ JS.
-if introduced tooling, would work on IE11, async/await doesn't work on IE11.(used async/await for simplicity sake)
+I had originally manipulated the filter dropdown w/ css, but refactored to manipulate the filter show/hide w/ JavaScript.
+
+With more time, I would introduce tooling (webpack, etc),
+There are a few things that might pose an issue on IE11 (async/await, classList.toggle). However, I used async/await and toggle for simplicity sake.
+
+Thanks for the opportunity to showcase my skills! I appreciate it! 🙏🏻👩🏻‍💻
 
 # Fool.com Front End Developer Test Project
 

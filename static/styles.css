@@ -165,7 +165,7 @@ header {
 	color: var(--fool-black);
 }
 
-.tags {
+.article-bureau {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
@@ -173,13 +173,13 @@ header {
 	margin-bottom: 20px;
 }
 
-.tags span {
+.tags {
 	border: 1px solid var(--fool-blue);
 	color: var(--fool-white);
 	background-color: var(--fool-blue);
 	padding: 5px 15px;
 	border-radius: 50px;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 /* stock advisor panel */
