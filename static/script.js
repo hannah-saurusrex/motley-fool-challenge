@@ -1,17 +1,21 @@
-// ToDos: 
-// API call ✅
-// search ✅
-// filter via topic dropdown ✅
-// .slice(0,5) results to bring in top 5
-
 const articlesEl = document.getElementById('articles');
 const filterBtn = document.getElementById('filter');
 const topicFilter = filterBtn.querySelectorAll('li');
+let allArticles = []; // create globally scoped variable to iterate over in future.
 
+// call API to pull in article data
+async function getArticles() {
+    const res = await fetch('http://127.0.0.1:8000/api/articles');
+    const articles = await res.json();
+    allArticles = articles.results;
+    const showResults = articles.results.slice(0,5); // show first 5 results
+    displayArticles(showResults);
+}
+getArticles();
 
 function displayArticles(articles) {
     articlesEl.innerHTML = '';
-    
+
     articles.forEach(article => {
         const articleEl = document.createElement('div');
         articleEl.classList.add('article');
@@ -32,26 +36,19 @@ function displayArticles(articles) {
                     <p class="article-promo">${article.promo}</p>
                 </a>
             </div>
-            <div class="tags article-bureau">
-                <span>${article.bureau.name}</span>
+            <div class="article-bureau" id="tags">
+                <span class="tags">${article.bureau.name}</span>
             </div>
         `;
         articlesEl.appendChild(articleEl);
     });
 }
 
-// pull in the article data
-async function getArticles() {
-    const res = await fetch('http://127.0.0.1:8000/api/articles');
-    const articles = await res.json();
-    displayArticles(articles.results);
-}
-
-getArticles();
 
 // show & hide the filter dropdown options list
 filterBtn.addEventListener('click', () => {
     filterBtn.classList.toggle('open');
+    // check .toggle w/ IE11;
 });
 
 
@@ -59,14 +56,29 @@ filterBtn.addEventListener('click', () => {
 topicFilter.forEach(filter => {
     filter.addEventListener('click', () => {
         const value = filter.innerText;
-        const articleBureau = document.querySelectorAll('.article-bureau'); 
-        
-        articleBureau.forEach(bureau => {
-            if (bureau.innerText.includes(value) || value === 'All') {
-                bureau.parentElement.style.display = 'block';
+         
+        const filteredResults = allArticles.filter(article => {
+            if (article.bureau.name.includes(value) || value === 'All') {
+                return true;
             } else {
-                bureau.parentElement.style.display = 'none';
+                return false;
             }
         });
+        displayArticles(filteredResults);
     });
 });
+
+// filter with topic tag
+// with more time, would refactor so that click event is on tags.
+document.addEventListener('click', e => {
+    if(e.target.className === 'tags') {
+        const filteredTags = allArticles.filter(article => {
+            if (article.bureau.name.includes(e.target.innerHTML)) {
+                return true;
+            }
+        });
+        displayArticles(filteredTags);
+    };
+});
+
+// would need to make tags stateful, and reassign every time to update the dom
