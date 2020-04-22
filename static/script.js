@@ -47,7 +47,6 @@ function displayArticles(articles) {
 // show & hide the filter dropdown options list
 filterBtn.addEventListener('click', () => {
     filterBtn.classList.toggle('open');
-    // check .toggle w/ IE11;
 });
 
 
