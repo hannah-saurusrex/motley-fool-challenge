@@ -13,6 +13,14 @@ async function getArticles() {
 }
 getArticles();
 
+// call instrument API to pull in market data
+async function getInstrumentData() {
+    const res = await fetch('http://127.0.0.1:8000/api/instruments');
+    const marketData = await res.json();
+    console.log(marketData);
+}
+console.log(getInstrumentData());
+
 function displayArticles(articles) {
     articlesEl.innerHTML = '';
 
