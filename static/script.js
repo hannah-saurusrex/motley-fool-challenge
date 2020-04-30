@@ -14,7 +14,6 @@ async function getArticles() {
 
 // call instrument API to pull in market data
 async function getInstrumentData() {
-    console.log("processing request");
     const res = await fetch('http://127.0.0.1:8000/api/instruments');
     const marketData = await res.json();
     allInstruments = marketData;
@@ -62,10 +61,11 @@ function displayArticles(articles) {
                     <p class="article-promo">${article.promo}</p>
                 </a>
             </div>
-            <div>
-                <h2>${article.instrument_stock_data.CompanyName}</h2>
-                <p>Close Price: $${article.instrument_stock_data.CurrentPrice.Amount}</p>
-                <p>${stockChange}%</p>
+            <div class="article-body">
+                <h3 class="market-info">Market Returns</h3>
+                <p class="market-info__content">${article.instrument_stock_data.CompanyName}</p>
+                <p class="market-info__content">Close Price: $${article.instrument_stock_data.CurrentPrice.Amount}</p>
+                <p class="market-info__content">Share price change: ${stockChange}%</p>
             </div>
            
             <div class="article-bureau" id="tags">
