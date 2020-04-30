@@ -3,50 +3,40 @@ const filterBtn = document.getElementById('filter');
 const topicFilter = filterBtn.querySelectorAll('li');
 const marketsEl = document.getElementById('market');
 let allArticles = []; // create globally scoped variable to iterate over in future.
+let allInstruments = [];
 
 // call API to pull in article data
 async function getArticles() {
     const res = await fetch('http://127.0.0.1:8000/api/articles');
     const articles = await res.json();
     allArticles = articles.results;
-    const showResults = articles.results.slice(0,5); // show first 5 results
-    displayArticles(showResults);
 }
-getArticles();
 
 // call instrument API to pull in market data
 async function getInstrumentData() {
     console.log("processing request");
     const res = await fetch('http://127.0.0.1:8000/api/instruments');
     const marketData = await res.json();
-    displayInstrumentData(marketData);
-     // filter by stock up today,
-    // filter by stock down today
-    // filter by stock highest close price
-    // filter by stock lowest close price
-    
+    allInstruments = marketData;
 }
-console.log(getInstrumentData());
 
-function displayInstrumentData(stocks) {
-    marketsEl.innerHTML = '';
+const promise1 = getArticles();
+const promise2 = getInstrumentData();
 
-    stocks.forEach(stock => {
-        const marketEl = document.createElement('div');
-        marketEl.classList.add('stock-data');
-        // need CompanyName, ClosePrice, OpenPrice, current share price...?
-
-        marketEl.innerHTML = `
-        <div class="stock-data__card">
-            <h2 class="stock-data__name">${stock.CompanyName}</h2>
-            <p class="pricing">Open Price: $${stock.OpenPrice.Amount}</p>
-            <p class="pricing">Close Price: $${stock.ClosePrice.Amount}</p>
-            <p class="pricing">Current Price: $${stock.CurrentPrice.Amount}</p>
-        </div>
-        `;
-        marketsEl.appendChild(marketEl);
-    });
-}
+Promise.all([promise1, promise2]).then(function() {
+    const initialData = allArticles.map(article => {
+       const articleCompanyName = article.instruments[0].company_name;
+       allInstruments.map(instrument => {
+           const marketCompanyName = instrument.CompanyName;
+           if (articleCompanyName === marketCompanyName) {
+               article.instrument_stock_data = instrument;
+           }
+       })
+       return article;
+    })
+    const showResults = initialData.slice(0,5); // show first 5 results
+    displayArticles(showResults);
+});
 
 function displayArticles(articles) {
     articlesEl.innerHTML = '';
@@ -54,6 +44,7 @@ function displayArticles(articles) {
     articles.forEach(article => {
         const articleEl = document.createElement('div');
         articleEl.classList.add('article');
+        const stockChange = (article.instrument_stock_data.PercentChange.Value * 100).toString().slice(0,4);
     
         articleEl.innerHTML = `
             <div class="article-image">
@@ -71,6 +62,12 @@ function displayArticles(articles) {
                     <p class="article-promo">${article.promo}</p>
                 </a>
             </div>
+            <div>
+                <h2>${article.instrument_stock_data.CompanyName}</h2>
+                <p>Close Price: $${article.instrument_stock_data.CurrentPrice.Amount}</p>
+                <p>${stockChange}%</p>
+            </div>
+           
             <div class="article-bureau" id="tags">
                 <span class="tags">${article.bureau.name}</span>
             </div>

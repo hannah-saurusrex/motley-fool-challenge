@@ -141,16 +141,16 @@ header {
 	color: var(--grey);
 }
 
+.stock-data__card {
+	padding-bottom: 15px;
+}
+
 .article-link {
 	text-decoration: none;
 }
 
 .article-body h2 {
 	margin-top: 0;
-	color: var(--fool-black);
-}
-
-.stock-data__name {
 	color: var(--fool-black);
 }
 
@@ -180,6 +180,14 @@ header {
 .tags:hover {
 	color: var(--fool-blue);
 	background-color: var(--fool-white);
+}
+
+.stock-data__name {
+	color: var(--fool-black);
+}
+
+.pricing {
+	margin: 8px 0;
 }
 
 /* stock advisor panel */
