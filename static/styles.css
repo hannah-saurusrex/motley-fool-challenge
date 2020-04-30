@@ -108,7 +108,8 @@ header {
 }
 
 /* article card styling */
-.article {
+.article,
+.stock-data {
 	display: flex;
 	flex-direction: column;
 	max-width: 325px;
@@ -131,7 +132,8 @@ header {
 	color: var(--grey);
 }
 
-.article-body {
+.article-body,
+.stock-data__card {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -145,6 +147,10 @@ header {
 
 .article-body h2 {
 	margin-top: 0;
+	color: var(--fool-black);
+}
+
+.stock-data__name {
 	color: var(--fool-black);
 }
 

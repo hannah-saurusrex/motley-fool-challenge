@@ -1,6 +1,7 @@
 const articlesEl = document.getElementById('articles');
 const filterBtn = document.getElementById('filter');
 const topicFilter = filterBtn.querySelectorAll('li');
+const marketsEl = document.getElementById('market');
 let allArticles = []; // create globally scoped variable to iterate over in future.
 
 // call API to pull in article data
@@ -15,11 +16,37 @@ getArticles();
 
 // call instrument API to pull in market data
 async function getInstrumentData() {
+    console.log("processing request");
     const res = await fetch('http://127.0.0.1:8000/api/instruments');
     const marketData = await res.json();
-    console.log(marketData);
+    displayInstrumentData(marketData);
+     // filter by stock up today,
+    // filter by stock down today
+    // filter by stock highest close price
+    // filter by stock lowest close price
+    
 }
 console.log(getInstrumentData());
+
+function displayInstrumentData(stocks) {
+    marketsEl.innerHTML = '';
+
+    stocks.forEach(stock => {
+        const marketEl = document.createElement('div');
+        marketEl.classList.add('stock-data');
+        // need CompanyName, ClosePrice, OpenPrice, current share price...?
+
+        marketEl.innerHTML = `
+        <div class="stock-data__card">
+            <h2 class="stock-data__name">${stock.CompanyName}</h2>
+            <p class="pricing">Open Price: $${stock.OpenPrice.Amount}</p>
+            <p class="pricing">Close Price: $${stock.ClosePrice.Amount}</p>
+            <p class="pricing">Current Price: $${stock.CurrentPrice.Amount}</p>
+        </div>
+        `;
+        marketsEl.appendChild(marketEl);
+    });
+}
 
 function displayArticles(articles) {
     articlesEl.innerHTML = '';
