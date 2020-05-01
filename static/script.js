@@ -1,6 +1,8 @@
 const articlesEl = document.getElementById('articles');
 const filterBtn = document.getElementById('filter');
 const topicFilter = filterBtn.querySelectorAll('li');
+const marketFtr = document.getElementById('filter-market');
+const marketTopicFilter = marketFtr.querySelectorAll('li');
 const marketsEl = document.getElementById('market');
 let allArticles = []; // create globally scoped variable to iterate over in future.
 let allInstruments = [];
@@ -81,6 +83,10 @@ filterBtn.addEventListener('click', () => {
     filterBtn.classList.toggle('open');
 });
 
+marketFtr.addEventListener('click', () => {
+    marketFtr.classList.toggle('open');
+});
+
 
 // filter articles via topic dropdown
 topicFilter.forEach(filter => {
@@ -94,6 +100,22 @@ topicFilter.forEach(filter => {
                 return false;
             }
         });
+        displayArticles(filteredResults);
+    });
+});
+
+// filter articles by stock market data; this isn't DRY...and i'm still working out the kinks.
+marketTopicFilter.forEach(filter => {
+    filter.addEventListener('click', () => {
+        const value = filter.innerText;
+
+        const filteredResults = allArticles.sort(article => {
+            if (article.instrument_stock_data.CurrentPrice.Amount > 2 || value === 'All') {
+                return 1
+            } else {
+                return -1;
+            }
+        })
         displayArticles(filteredResults);
     });
 });

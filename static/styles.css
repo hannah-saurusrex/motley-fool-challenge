@@ -275,6 +275,7 @@ header {
 	}
 
 	.container-filter {
+		display: flex;
 		padding: 0;
 		margin: 0;
 	}
@@ -284,7 +285,7 @@ header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		margin: auto;
+		margin: 0 15px;
 	}
 
 	.article-headline,
