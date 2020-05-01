@@ -50,8 +50,11 @@ function displayArticles(articles) {
     articles.forEach(article => {
         const articleEl = document.createElement('div');
         articleEl.classList.add('article');
-        const stockChange = (article.instrument_stock_data.PercentChange.Value * 100).toString().slice(0,4); 
-        // pulled in the change precentage value and formatted to a certain decimal. Will take another look at using Regex for formatting
+        const stockChange = (article.instrument_stock_data.PercentChange.Value * 100)
+            .toString()
+            .slice(0,4); 
+        // pulled in the change precentage value and formatted to a certain decimal. 
+        // Will take another look at using Regex for formatting
     
         articleEl.innerHTML = `
             <div class="article-image">
@@ -115,7 +118,7 @@ marketTopicFilter.forEach(filter => {
     filter.addEventListener('click', () => {
         const value = filter.innerText;
 
-        const filteredResults = allArticles.sort(article => {
+        const filteredResults = allArticles.filter(article => {
             if (article.instrument_stock_data.CurrentPrice.Amount > 1 || value === 'All') {
                 return true;
             } else {
