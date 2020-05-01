@@ -117,12 +117,13 @@ topicFilter.forEach(filter => {
 marketTopicFilter.forEach(filter => {
     filter.addEventListener('click', () => {
         const value = filter.innerText;
-
+        // const stockChange = (article.instrument_stock_data.PercentChange.Value * 100)
+        //     .toString()
+        //     .slice(0,4); 
+        
         const filteredResults = allArticles.filter(article => {
-            if (article.instrument_stock_data.CurrentPrice.Amount > 1 || value === 'All') {
+            if (article.instrument_stock_data.PercentChange.Value * 100 > 0 || value === 'All') {
                 return true;
-            } else {
-                return false;
             }
         })
         displayArticles(filteredResults);
