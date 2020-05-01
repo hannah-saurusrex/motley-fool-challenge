@@ -7,7 +7,7 @@ const marketsEl = document.getElementById('market');
 let allArticles = []; // create globally scoped variable to iterate over in future.
 let allInstruments = [];
 
-// call API to pull in article data
+// call article API to pull in article data
 async function getArticles() {
     const res = await fetch('http://127.0.0.1:8000/api/articles');
     const articles = await res.json();
@@ -54,7 +54,7 @@ function displayArticles(articles) {
             .toString()
             .slice(0,4); 
         // pulled in the change precentage value and formatted to a certain decimal. 
-        // Will take another look at using Regex for formatting
+        // Will take another look at using Regex for formatting. Can use parseInt() too....
     
         articleEl.innerHTML = `
             <div class="article-image">
@@ -116,6 +116,8 @@ topicFilter.forEach(filter => {
 // filter articles by stock market data; this isn't DRY...and i'm still working out the kinks.
 marketTopicFilter.forEach(filter => {
     filter.addEventListener('click', () => {
+        const up = filter.innerText.includes('up');
+        const down = filter.innerText.includes('down')
         const value = filter.innerText;
         // const stockChange = (article.instrument_stock_data.PercentChange.Value * 100)
         //     .toString()
