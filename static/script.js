@@ -24,6 +24,11 @@ async function getInstrumentData() {
 const promise1 = getArticles();
 const promise2 = getInstrumentData();
 
+// originally had this written out into two seprate blocks (one for articles, one for market rate information) but based on scope, 
+// needed to adjust so that users can filter ARTICLES by instrument (read: market) info.
+// used Promise.all() to merge both API calls into one master data list, which we can then filter info from.
+// matched up instrument data to each article using the company name (this could pose issues with different data, 
+// but I saw that all companies were lised, and that all names matched.)
 Promise.all([promise1, promise2]).then(function() {
     const initialData = allArticles.map(article => {
        const articleCompanyName = article.instruments[0].company_name;
@@ -45,7 +50,8 @@ function displayArticles(articles) {
     articles.forEach(article => {
         const articleEl = document.createElement('div');
         articleEl.classList.add('article');
-        const stockChange = (article.instrument_stock_data.PercentChange.Value * 100).toString().slice(0,4);
+        const stockChange = (article.instrument_stock_data.PercentChange.Value * 100).toString().slice(0,4); 
+        // pulled in the change precentage value and formatted to a certain decimal. Will take another look at using Regex for formatting
     
         articleEl.innerHTML = `
             <div class="article-image">
