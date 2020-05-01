@@ -110,10 +110,10 @@ marketTopicFilter.forEach(filter => {
         const value = filter.innerText;
 
         const filteredResults = allArticles.sort(article => {
-            if (article.instrument_stock_data.CurrentPrice.Amount > 2 || value === 'All') {
-                return 1
+            if (article.instrument_stock_data.CurrentPrice.Amount > 1 || value === 'All') {
+                return true;
             } else {
-                return -1;
+                return false;
             }
         })
         displayArticles(filteredResults);
