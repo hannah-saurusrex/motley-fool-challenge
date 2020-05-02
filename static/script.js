@@ -55,6 +55,7 @@ function displayArticles(articles) {
             .slice(0,4); 
         // pulled in the change precentage value and formatted to a certain decimal. 
         // Will take another look at using Regex for formatting. Can use parseInt() too....
+        // what happens when no market data is available?
     
         articleEl.innerHTML = `
             <div class="article-image">
@@ -74,7 +75,7 @@ function displayArticles(articles) {
             </div>
             <div class="article-body">
                 <h3 class="market-info">Market Returns</h3>
-                <p class="market-info__content">${article.instrument_stock_data.CompanyName}</p>
+                <p class="market-info__content">${article.instrument_stock_data.CompanyName} (${article.instrument_stock_data.ExchangeName}: ${article.instrument_stock_data.Symbol})</p>
                 <p class="market-info__content">Close Price: $${article.instrument_stock_data.CurrentPrice.Amount}</p>
                 <p class="market-info__content">Share price change: ${stockChange}%</p>
             </div>
@@ -116,18 +117,13 @@ topicFilter.forEach(filter => {
 // filter articles by stock market data; this isn't DRY...and i'm still working out the kinks.
 marketTopicFilter.forEach(filter => {
     filter.addEventListener('click', () => {
-        const up = filter.innerText.includes('up');
-        const down = filter.innerText.includes('down')
         const value = filter.innerText;
-        // const stockChange = (article.instrument_stock_data.PercentChange.Value * 100)
-        //     .toString()
-        //     .slice(0,4); 
         
         const filteredResults = allArticles.filter(article => {
-            if (article.instrument_stock_data.PercentChange.Value * 100 > 0 || value === 'All') {
+            if (article.instrument_stock_data.CompanyName.includes(value) || value === 'All') {
                 return true;
             }
-        })
+        });
         displayArticles(filteredResults);
     });
 });
