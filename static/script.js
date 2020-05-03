@@ -75,7 +75,9 @@ function displayArticles(articles) {
             </div>
             <div class="article-body">
                 <h3 class="market-info">Market Returns</h3>
-                <p class="market-info__content">${article.instrument_stock_data.CompanyName} (${article.instrument_stock_data.ExchangeName}: ${article.instrument_stock_data.Symbol})</p>
+                <p class="market-info__content">${article.instrument_stock_data.CompanyName}
+                    (${article.instrument_stock_data.ExchangeName}: 
+                    ${article.instrument_stock_data.Symbol})</p>
                 <p class="market-info__content">Close Price: $${article.instrument_stock_data.CurrentPrice.Amount}</p>
                 <p class="market-info__content">Share price change: ${stockChange}%</p>
             </div>
