@@ -126,11 +126,15 @@ header {
 	width: 100%;
 }
 
+.byline-container {
+	display: flex;
+}
+
 .article-byline {
-	font-size: 12px;
-	font-weight: 300;
+	font-size: 18px;
+	font-weight: 600;
 	margin: 0;
-	color: var(--grey);
+	color: red;
 }
 
 .article-body {

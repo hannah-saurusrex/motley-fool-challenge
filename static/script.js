@@ -4,6 +4,8 @@ const topicFilter = filterBtn.querySelectorAll('li');
 const marketFtr = document.getElementById('filter-market');
 const marketTopicFilter = marketFtr.querySelectorAll('li');
 const marketsEl = document.getElementById('market');
+const filterSlug = document.getElementById('filter-slug');
+const displaySlug = filterSlug.querySelectorAll('li');
 let allArticles = []; // create globally scoped variable to iterate over in future.
 let allInstruments = [];
 
@@ -69,7 +71,13 @@ function displayArticles(articles) {
             <div class="article-body">
                 <a class="article-link" href="${article.links.presentation}">
                     <h2 class="article-headline">${article.headline}</h2>
+                <div class="byline-container">
                     <h4 class="article-byline">By ${article.byline}</h4>
+                <div class="article-image">
+                    <img src="${article.authors[0].small_avatar_url}" alt="${article.authors.byline}" />
+                </div>
+                </div>
+                    <h4>${article.authors[0].short_bio}</h4>
                     <p class="article-promo">${article.promo}</p>
                 </a>
             </div>
@@ -97,6 +105,28 @@ filterBtn.addEventListener('click', () => {
 
 marketFtr.addEventListener('click', () => {
     marketFtr.classList.toggle('open');
+});
+
+filterSlug.addEventListener('click', () => {
+    filterSlug.classList.toggle('open');
+});
+
+displaySlug.forEach(filter => {
+    filter.addEventListener('click', () => {
+        const value = filter.innerText;
+
+        const filteredResults = allArticles.filter(article => {
+           const tagValue = article.tags
+               tagValue 
+               for (tag = i, tag.length > 1, tag++) {
+                   console.log(tag);
+               }
+                });
+            });
+            console.log(filteredResults);
+        displayArticles(filteredResults);
+        
+    });
 });
 
 
